@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="EvidencePrihlasek.View.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EvidencePrihlasek.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+
+        <TextBlock 
+                   FontSize="28" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,127,0,0" Height="55"><Run Text="Vítejte v aplikaci pro evidenci přihlášek"/></TextBlock>
+
+        <TextBlock TextWrapping="Wrap" 
+                   Text="Vítejte v aplikaci Evidence Přihlášek. Tato aplikace slouží k evidenci přihlášek na střední školy. Zde můžete nalézt informace o jednotlivých školách a nabízených studijních programech." 
+                   FontSize="16" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Width="726"/>
+
+    </Grid>
+
+</UserControl>

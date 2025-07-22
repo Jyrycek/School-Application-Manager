@@ -1,0 +1,69 @@
+﻿@model DashboardModel
+@{
+	ViewData["Title"] = "Dashboard";
+}
+<div class="text-center mb-2">
+	<h1 class="display-4 py-2">Vítejte, @User.Identity.Name!</h1>
+	<p>Seznam přihlášek</p>
+</div>
+
+@if (Model.ApplicationSubmitted)
+{
+    <div class="card bg-light shadow mb-4">
+        <div class="card-header py-3">
+            <h2 class="m-0 font-weight-bold">Detaily vaší přihlášky</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Jméno a příjmení</h3>
+                    <p>@Model.FirstName @Model.LastName</p>
+                    <p><strong>Datum narození: </strong>@Model.BirthDate.ToShortDateString()</p>
+                    <p><strong>Kontakt: </strong>@Model.ContactPhone</p>
+                </div>
+                <div class="col-md-6">
+                    <h3>Datum podání</h3>
+                    <p>@Model.SubmissionDate.ToShortDateString()</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                @foreach (var schoolAndProgram in new[] { Model.SchoolAndProgram1, Model.SchoolAndProgram2, Model.SchoolAndProgram3 })
+                {
+                    <div class="col-md-4">
+                        <div class="card bg-light shadow-sm mb-4">
+                            <div class="card-body">
+                                <h3 class="card-title">Detaily studijního programu</h3>
+                                <ul class="list-unstyled">
+                                    <li><strong>Škola:</strong> @schoolAndProgram.Item1.Name</li>
+                                    <li><strong>Web školy:</strong> @schoolAndProgram.Item1.Web</li>
+                                    <li><strong>Studijní program:</strong> @schoolAndProgram.Item2.Name</li>
+                                    <li><strong>Kód programu:</strong> @schoolAndProgram.Item2.Identifier</li>
+                                    <li><strong>Kapacita oboru:</strong> @schoolAndProgram.Item2.OpenSlots</li>
+                                    <li><strong>Popisek:</strong> @schoolAndProgram.Item2.Description</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card bg-light shadow mb-4">
+        <div class="card-body">
+            <h2 class="m-0 font-weight-bold text-warning">Ještě jste nepodal(a) přihlášku.</h2>
+        </div>
+        <div class="card-footer text-center">
+            <a href="/Application/CreateApplication" class="btn btn-secondary btn-edit-custom btn-lg">Podat přihlášku</a>
+        </div>
+    </div>
+}
+<div class="text-right mb-3">
+    <form asp-controller="Dashboard" asp-action="Logout" method="post">
+        <button type="submit" class="btn btn-danger">Odhlásit se</button>
+    </form>
+</div>
+

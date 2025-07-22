@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="EvidencePrihlasek.View.SchoolList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EvidencePrihlasek.View"
+             mc:Ignorable="d" d:DesignWidth="800" Height="498">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Schools}" 
+          BorderThickness="1" 
+          Background="#FFEFEFEF" 
+          Margin="10,20,10,129"
+          AutoGenerateColumns="False" 
+          CanUserAddRows="False"
+          CanUserDeleteRows="False"
+          HeadersVisibility="Column" 
+          RowHeaderWidth="0" 
+          BorderBrush="Black" 
+          GridLinesVisibility="None"
+          RowEditEnding="DataGrid_RowEditEnding" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Název" Binding="{Binding Name}" Width="*" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Adresa" Binding="{Binding Address}" Width="*" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Město" Binding="{Binding City}" Width="*" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="PSČ" Binding="{Binding PostalCode}" Width="Auto" MinWidth="50" ElementStyle="{StaticResource CenteredTextBlockStyle}" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Země" Binding="{Binding Country}" Width="*" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding ContactPhone}" Width="*" ElementStyle="{StaticResource CenteredTextBlockStyle}" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Web" Binding="{Binding Web}" Width="*" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Další informace" Binding="{Binding Info}" Width="*" HeaderStyle="{StaticResource CenteredColumnHeaderStyle}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Obory">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectionChanged="DataGrid_SelectionChanged" ItemsSource="{Binding StudyPrograms}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedStudyProgram}" IsReadOnly="True"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Upravit" Click="Button_EditSchool" Margin="2,0,2,0" Padding="4,0,4,0"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Smazat" Command="{Binding DataContext.RemoveSchoolCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" Margin="0,0,2,0" Padding="4,0,4,0"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="Button_AddSchool" x:Name="Button_AddSchoolName" Content="Přidat" HorizontalAlignment="Center" Width="100" Margin="0,388,0,86" Padding="2,2,2,2"/>
+    </Grid>
+</UserControl>

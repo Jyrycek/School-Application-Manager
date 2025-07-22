@@ -1,0 +1,170 @@
+﻿@model CreateApplicationModel
+
+@{
+	ViewData["Title"] = "Podání nové přihlášky";
+}
+
+<h1>Podání nové přihlášky</h1>
+
+<form asp-action="CreateNewApplication">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="row pb-2">
+		<div class="col-md-6">
+			<h3>Osobní údaje</h3>
+			<div class="form-group">
+				<label asp-for="FirstName">Jméno:</label>
+				<input asp-for="FirstName" type="text" class="form-control" id="firstName" name="FirstName" required>
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="LastName">Příjmení:</label>
+				<input asp-for="LastName" type="text" class="form-control" id="lastName" name="LastName" required>
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Email">Email:</label>
+				<input asp-for="Email" type="email" class="form-control" id="email" name="Email" required>
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="BirthDate">Datum narození:</label>
+				<input asp-for="BirthDate" type="date" class="form-control" id="birthDate" name="BirthDate" required>
+				<span asp-validation-for="BirthDate" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Address">Adresa:</label>
+				<input asp-for="Address" type="text" class="form-control" id="address" name="Address" required>
+				<span asp-validation-for="Address" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="City">Město:</label>
+				<input asp-for="City" type="text" class="form-control" id="city" name="City" required>
+				<span asp-validation-for="City" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="PostalCode">PSČ:</label>
+				<input asp-for="PostalCode" type="text" class="form-control" id="postalCode" name="PostalCode">
+				<span asp-validation-for="PostalCode" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Country">Země:</label>
+				<input asp-for="Country" type="text" class="form-control" id="country" name="Country" required>
+				<span asp-validation-for="Country" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ContactPhone">Kontaktní telefon:</label>
+				<input asp-for="ContactPhone" type="tel" class="form-control" id="contactPhone" name="ContactPhone">
+				<span asp-validation-for="ContactPhone" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="AdditionalInfo">Informace navíc:</label>
+				<input asp-for="AdditionalInfo" type="text" class="form-control" id="additionalInfo" name="AdditionalInfo">
+				<span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<h3>Školy a studijní programy</h3>
+			<div class="form-group">
+				<label asp-for="HighSchoolId1">Škola 1:</label>
+				<select asp-for="HighSchoolId1" asp-items="ViewBag.Schools" class="form-control" id="highSchool1" required>
+					<option value="">Vyberte školu</option>
+				</select>
+				<span asp-validation-for="HighSchoolId1" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="StudyProgramId1">Studijní program 1:</label>
+				<select asp-for="StudyProgramId1" asp-items="@ViewBag.Programs" class="form-control" id="studyProgram1" required>
+					<option value="">Vyberte studijní program</option>
+				</select>
+				<span asp-validation-for="StudyProgramId1" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="HighSchoolId2">Škola 2:</label>
+				<select asp-for="HighSchoolId2" asp-items="ViewBag.Schools" class="form-control" id="highSchool2">
+					<option value="">Vyberte školu</option>
+				</select>
+				<span asp-validation-for="HighSchoolId2" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="StudyProgramId2">Studijní program 2:</label>
+				<select asp-for="StudyProgramId2" asp-items="@ViewBag.Programs" class="form-control" id="studyProgram2">
+					<option value="">Vyberte studijní program</option>
+				</select>
+				<span asp-validation-for="StudyProgramId2" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="HighSchoolId3">Škola 3:</label>
+				<select asp-for="HighSchoolId3" asp-items="ViewBag.Schools" class="form-control" id="highSchool3">
+					<option value="">Vyberte školu</option>
+				</select>
+				<span asp-validation-for="HighSchoolId3" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="StudyProgramId3">Studijní program 3:</label>
+				<select asp-for="StudyProgramId3" asp-items="@ViewBag.Programs" class="form-control" id="studyProgram3">
+					<option value="">Vyberte studijní program</option>
+				</select>
+				<span asp-validation-for="StudyProgramId3" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="row pt-1">
+		<div class="col-md-12 text-center">
+			<button type="submit" class="btn btn-secondary btn-edit-custom">Vytvořit přihlášku</button>
+		</div>
+	</div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function populateStudyPrograms(highSchoolId, studyProgramSelect) {
+		if (highSchoolId !== "") {
+			$.ajax({
+				url: '/Application/GetPrograms',
+				type: 'GET',
+				data: { schoolId: highSchoolId },
+				success: function (data) {
+					studyProgramSelect.empty();
+					$.each(data, function (index, item) {
+						studyProgramSelect.append($('<option>').val(item.id).text(item.name));
+					});
+				},
+				error: function () {
+					alert('Nepodařilo se načíst studijní programy.');
+				}
+			});
+		} else {
+			studyProgramSelect.empty();
+		}
+	}
+
+	$('#highSchool1').change(function () {
+		var highSchoolId = $(this).val();
+		var studyProgramSelect = $('#studyProgram1');
+
+		populateStudyPrograms(highSchoolId, studyProgramSelect);
+	});
+
+	$('#highSchool2').change(function () {
+		var highSchoolId = $(this).val();
+		var studyProgramSelect = $('#studyProgram2');
+
+		populateStudyPrograms(highSchoolId, studyProgramSelect);
+	});
+
+	$('#highSchool3').change(function () {
+		var highSchoolId = $(this).val();
+		var studyProgramSelect = $('#studyProgram3');
+
+		populateStudyPrograms(highSchoolId, studyProgramSelect);
+	});
+	$(document).ready(function () {
+		$('#highSchool1').val('');
+		$('#highSchool2').val('');
+		$('#highSchool3').val('');
+	});
+</script>

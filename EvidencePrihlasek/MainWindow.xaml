@@ -1,0 +1,34 @@
+﻿<Window x:Class="EvidencePrihlasek.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Evidence přihlášek" Height="650" Width="1100" Icon="/icon.png">
+    <Grid>
+        <Border Height="50" VerticalAlignment="Top">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#FF9E6BCA" Offset="0"/>
+                    <GradientStop Color="#FE755FC1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Button Command="{Binding HomeCommand}" Style="{StaticResource CustomButtonStyle}" BorderThickness="0" FontSize="18" FontWeight="Bold" Foreground="White" Background="{x:Null}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="EVIDENCE PŘIHLÁŠEK" Margin="0,0,0,0" FontSize="24"/>
+                    </StackPanel>
+                </Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Command="{Binding ApplicationListCommand}" Style="{StaticResource CustomButtonStyle}" Content="SPRÁVA PŘIHLÁŠEK" BorderThickness="0" FontSize="18" FontWeight="Bold" Foreground="White" Background="{x:Null}" Margin="0,0,20,0"/>
+                    <Button Command="{Binding SchoolListCommand}" Style="{StaticResource CustomButtonStyle}" Content="SPRÁVA SŠ" BorderThickness="0" FontSize="18" FontWeight="Bold" Foreground="White" Background="{x:Null}" Margin="0,0,20,0"/>
+                    <Button Command="{Binding AboutAppCommand}" Style="{StaticResource CustomButtonStyle}" Content="O APLIKACI" FontSize="18" BorderThickness="0" FontWeight="Bold" Foreground="White" Background="{x:Null}" Margin="0,0,15,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid x:Name="ContentGrid" Margin="20,70,20,25" Cursor="">
+            <ContentControl Content="{Binding CurrentView}"/>
+        </Grid>
+        <TextBlock Text="Jiří Gengela 2024" 
+                   FontSize="10" 
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,8"/>
+    </Grid>
+</Window>
