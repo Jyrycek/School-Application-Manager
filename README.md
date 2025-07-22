@@ -21,4 +21,4 @@ This project was created as part of a school assignment.
 
 ## License
 
-MIT License © 2025 Jiří Gengela
+MIT License © 2024 Jiří Gengela
