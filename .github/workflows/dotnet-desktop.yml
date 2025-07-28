@@ -1,0 +1,36 @@
+name: .NET CI (Windows only)
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-windows:
+    name: Build all projects (Windows)
+    runs-on: windows-latest
+
+    env:
+      EnableWindowsTargeting: true
+
+    steps:
+      - name: ⬇Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore all projects
+        run: |
+          dotnet restore EvidencePrihlasekWeb/EvidencePrihlasekWeb.csproj
+          dotnet restore DatabaseManager/DatabaseManager.csproj
+          dotnet restore EvidencePrihlasek/EvidencePrihlasekDesktop.csproj
+
+      - name: Build all projects
+        run: |
+          dotnet build EvidencePrihlasekWeb/EvidencePrihlasekWeb.csproj --no-restore --configuration Release
+          dotnet build DatabaseManager/DatabaseManager.csproj --no-restore --configuration Release
+          dotnet build EvidencePrihlasek/EvidencePrihlasekDesktop.csproj --no-restore --configuration Release
